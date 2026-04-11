@@ -1,0 +1,167 @@
+name: stint-money-verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify required files exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f demo/stint_money_demo_v1.0.py
+          test -f VERIFY/FREEZE_DEMO_SHA256.txt
+          test -f VERIFY/VERIFY.txt
+          echo "Required files present."
+
+      - name: Verify file hash matches freeze
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib
+          import re
+          import sys
+          from pathlib import Path
+
+          demo_path = Path("demo/stint_money_demo_v1.0.py")
+          freeze_path = Path("VERIFY/FREEZE_DEMO_SHA256.txt")
+
+          actual_hash = hashlib.sha256(demo_path.read_bytes()).hexdigest()
+
+          freeze_text = freeze_path.read_text(encoding="utf-8")
+          m = re.search(r'([0-9a-f]{64})', freeze_text, flags=re.IGNORECASE)
+          if not m:
+              print("ERROR: Could not find 64-char SHA256 in VERIFY/FREEZE_DEMO_SHA256.txt")
+              sys.exit(1)
+
+          expected_hash = m.group(1).lower()
+
+          if actual_hash != expected_hash:
+              print("ERROR: File hash mismatch")
+              print("Expected:", expected_hash)
+              print("Actual:  ", actual_hash)
+              sys.exit(1)
+
+          print("File hash verified:", actual_hash)
+          PY
+
+      - name: Run demo twice and verify deterministic stdout
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          cmd = [sys.executable, "demo/stint_money_demo_v1.0.py"]
+
+          run1 = subprocess.run(cmd, capture_output=True, text=True, check=True)
+          run2 = subprocess.run(cmd, capture_output=True, text=True, check=True)
+
+          out1 = run1.stdout
+          out2 = run2.stdout
+
+          Path("run1_stdout.txt").write_text(out1, encoding="utf-8")
+          Path("run2_stdout.txt").write_text(out2, encoding="utf-8")
+
+          if out1 != out2:
+              print("ERROR: Demo stdout differs across repeated runs.")
+              print("Saved outputs to run1_stdout.txt and run2_stdout.txt")
+              sys.exit(1)
+
+          print("Deterministic stdout verified across repeated runs.")
+          PY
+
+      - name: Verify required structural markers in output
+        shell: bash
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+
+          out = Path("run1_stdout.txt").read_text(encoding="utf-8")
+
+          required_substrings = [
+              "STINT-Money Demo v1.0",
+              "SCENARIO 2 - RECONSTRUCT EACH BATCH",
+              '"batch_id": "BATCH-1"',
+              '"resolution_state": "RESOLVED"',
+              '"batch_id": "BATCH-4"',
+              '"resolution_state": "CONFLICT"',
+              '"activation_state": "READY"',
+              '"activation_state": "BLOCKED"',
+              '"activation_state": "RELEASED"',
+              '"activation_state": "FROZEN"',
+              "SCENARIO 9 - SUPERVISORY CAPSULE ACROSS ALL BATCHES",
+              "SCENARIO 10 - TAMPER VALIDATION RETAINED",
+              "payload_hash mismatch",
+              "certificate mismatch",
+              "capsule_id mismatch",
+              "FINAL RESULT",
+              "PASS: batch truth is derived independently from structure",
+              "PASS: activation is separated into BLOCKED, READY, RELEASED, and FROZEN",
+              "PASS: a batch can be RESOLVED and READY without being RELEASED",
+              "PASS: a batch can be RESOLVED but BLOCKED by dependency failure",
+              "PASS: explicit release is separated from structural readiness",
+              "PASS: chain finality is distinct from batch finality",
+              "PASS: supervisory rollup preserves worst-case state visibility",
+              "PASS: tampering remains detectable and rejectable",
+          ]
+
+          missing = [s for s in required_substrings if s not in out]
+          if missing:
+              print("ERROR: Missing required output markers:")
+              for item in missing:
+                  print("-", item)
+              sys.exit(1)
+
+          print("All required structural markers found in output.")
+          PY
+
+      - name: Verify expected batch outcomes are present
+        shell: bash
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+
+          out = Path("run1_stdout.txt").read_text(encoding="utf-8")
+
+          expected_pairs = [
+              ('"batch_id": "BATCH-1"', '"resolution_state": "RESOLVED"'),
+              ('"batch_id": "BATCH-2"', '"resolution_state": "RESOLVED"'),
+              ('"batch_id": "BATCH-3"', '"resolution_state": "RESOLVED"'),
+              ('"batch_id": "BATCH-4"', '"resolution_state": "CONFLICT"'),
+          ]
+
+          for batch_id, resolution in expected_pairs:
+              if batch_id not in out or resolution not in out:
+                  print("ERROR: Expected batch/resolution pair not found:", batch_id, resolution)
+                  sys.exit(1)
+
+          print("Expected batch outcomes verified.")
+          PY
+
+      - name: Upload run outputs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stint-money-debug-output
+          path: |
+            run1_stdout.txt
+            run2_stdout.txt
+          if-no-files-found: ignore
