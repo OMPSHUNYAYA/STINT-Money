@@ -1,0 +1,71 @@
+STINT-Money Verification
+
+Run reference demonstration:
+
+python demo/stint_money_demo_v1.0.py
+
+Observe:
+
+deterministic structural settlement
+no dependence on continuous connectivity
+no dependence on synchronization or message ordering
+structure is evaluated independently of network conditions
+resolution is derived purely from structural completeness and consistency
+activation is controlled separately from correctness
+
+Expected structural outcomes:
+
+BATCH-1 → RESOLVED + RELEASED
+BATCH-2 → RESOLVED + READY (or RELEASED when explicitly permitted)
+BATCH-3 → RESOLVED + BLOCKED
+BATCH-4 → CONFLICT + BLOCKED
+Supervisory state reflects worst-case structural condition
+
+Expected structural maturity:
+
+complete and consistent structure → RESOLVED
+incomplete structure → ABSTAIN
+inconsistent structure → CONFLICT
+
+Expected behavior:
+
+complete structure → visible and stable state
+incomplete structure → no forced resolution (ABSTAIN)
+inconsistent structure → safe rejection (CONFLICT)
+dependency failure → activation blocked, correctness preserved
+identical structure → identical outcome and canonical representation
+
+Verify determinism:
+
+run the script multiple times
+confirm identical:
+visible state
+structural_time
+certificates
+
+Verify file identity:
+
+certutil -hashfile demo\stint_money_demo_v1.0.py SHA256
+
+Note:
+
+the file hash represents file identity
+the structural certificate represents resolved structure
+these are not required to be equal
+
+The structural certificate is derived from resolved structure, not from the file itself.
+Identical structure produces identical certificates, independent of execution, ordering, or network conditions.
+
+Confirm:
+
+output is identical across runs
+certificates remain consistent for identical structure
+modified structure produces a different certificate
+merge order or timing does not affect final outcome
+
+Result:
+
+Deterministic structural settlement confirmed for STINT-Money.
+
+Financial correctness is preserved and reconstructed from structure, independent of continuous network connectivity, synchronization, or ordered communication.
+
