@@ -19,6 +19,8 @@
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![Open-Standard](https://img.shields.io/badge/Reference-Open%20Standard-blue)
 
+[![Verify](https://github.com/OMPSHUNYAYA/STINT-Money/actions/workflows/stint-money-verify.yml/badge.svg)](https://github.com/OMPSHUNYAYA/STINT-Money/actions/workflows/stint-money-verify.yml)
+
 **A deterministic proof that financial correctness does not require continuous connectivity.**
 
 A minimal deterministic reference implementation where financial correctness is preserved and reconstructed directly from structure — not from continuous connectivity, synchronization, or ordered communication.
