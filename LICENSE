@@ -1,0 +1,218 @@
+Open Standard License — STINT-Money Reference Implementation
+
+STINT-Money — Structural Settlement (Money Without Network Dependency)
+Shunyaya Structural Settlement Model
+
+
+Legal Status
+
+This license is a permissive Open Standard license for the STINT-Money reference implementation.
+
+To the maximum extent permitted by applicable law, this license grants rights similar in spirit to permissive open-source licenses, while preserving truthful representation requirements for the STINT-Money name and reference implementation.
+
+If any provision is found unenforceable, the remaining provisions remain in effect.
+
+
+Permission
+
+Permission is hereby granted, free of charge, to any person or organization to:
+
+use
+execute
+study
+reproduce
+publish
+distribute
+modify
+implement
+extend
+
+the STINT-Money reference implementation, in whole or in part, for commercial or non-commercial use, subject only to the representation and naming conditions defined in this license.
+
+No registration, fees, or approval required.
+
+
+No Restrictions on Use
+
+This reference implementation imposes no restrictions on usage, except:
+
+truthful representation
+non-misleading use of the STINT-Money name
+
+Attribution is not required.
+No endorsement or certification is implied.
+No runtime obligations apply.
+
+Correctness is governed by:
+
+structure_mature = complete AND consistent
+
+—not by licensing terms.
+
+
+Non-Patent Assertion
+
+To the extent permitted by applicable law, the authors make no patent claims over the STINT-Money reference implementation as released.
+
+If any patents apply, this license does not grant any patent rights.
+
+Users are responsible for ensuring compliance with any applicable patent laws in their jurisdiction.
+
+
+Representation & Naming
+
+Modified or extended implementations:
+
+must not be presented as the canonical STINT-Money reference implementation unless structural behavior is preserved
+must not imply official authorship, certification, or endorsement
+
+Use of the name “STINT-Money” must not imply:
+
+endorsement
+certification
+governance authority
+official compliance
+
+
+Recommended Attribution (Optional)
+
+Preferred form:
+
+Implements STINT-Money — Structural Settlement (Shunyaya Structural Model)
+
+Attribution must not imply endorsement.
+
+
+Scope of the Reference Implementation
+
+This release includes:
+
+structural state definitions
+dependency-aware activation model
+tetherless settlement logic
+a minimal executable reference demonstration
+outputs and reference traces
+
+STINT-Money defines a deterministic structural model where financial correctness is preserved independently of continuous network connectivity:
+
+resolve(structure) ->
+    RESOLVED   if complete and consistent
+    ABSTAIN    if insufficient structure
+    CONFLICT   if inconsistent structure
+
+Activation is modeled separately:
+
+activate(structure, dependencies) ->
+    READY
+    BLOCKED
+    RELEASED
+    FROZEN
+
+
+What This Demonstrates
+
+• financial correctness without continuous network connectivity
+• independence from synchronization and ordered communication
+• deterministic convergence under delay and unordered availability
+• separation of truth and activation
+• dependency-aware activation control
+• structural maturity governing correctness
+• safe handling of incomplete or conflicting structure
+• reproducible canonical outcomes across independent systems
+
+
+Conformance
+
+An implementation is considered compatible if it preserves:
+
+structure-based correctness
+independence from continuous connectivity as a requirement
+order-independent merge behavior
+deterministic convergence under delayed availability
+separation of resolution and activation
+dependency-aware activation control
+reproducibility under equivalent structure
+explicit handling of insufficient and conflicting structure
+
+Conformance is judged by observable behavior, not internal implementation.
+
+
+Relationship to Shunyaya Framework
+
+STINT-Money is part of the broader Shunyaya framework.
+
+It builds on:
+
+SLANG → structural resolution without execution
+ORL → structural correctness without ordering
+STIME → structural time (time without clocks)
+SSUM-Time → structural time reconstruction
+STOCRS → structure-first computation
+
+STINT extends this progression by removing continuous network dependency as a requirement for correctness.
+
+
+Architecture License
+
+The conceptual architecture and documentation are licensed under:
+
+Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
+
+Permitted:
+
+research
+academic use
+study and reproduction
+non-commercial distribution
+
+Commercial use of architecture text is not permitted under this license.
+
+Full license:
+https://creativecommons.org/licenses/by-nc/4.0/
+
+
+Responsibility
+
+Use of STINT-Money in real-world systems is entirely at the user’s own responsibility.
+
+This reference implementation provides:
+
+deterministic structural settlement
+tetherless correctness preservation
+dependency-aware activation modeling
+safe handling of incomplete/conflicting structure
+
+It does not provide:
+
+financial guarantees
+regulatory compliance
+fraud elimination
+operational guarantees
+
+
+No Warranty
+
+THE STINT-MONEY REFERENCE IMPLEMENTATION IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND.
+
+THIS INCLUDES, BUT IS NOT LIMITED TO:
+
+MERCHANTABILITY
+FITNESS FOR A PARTICULAR PURPOSE
+NON-INFRINGEMENT
+
+IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM USE OF THIS IMPLEMENTATION.
+
+
+Closing Statement
+
+STINT-Money explores a fundamental idea:
+
+Financial correctness can be preserved and reconstructed from structure—even without continuous network connectivity.
+
+It is released openly to encourage:
+
+independent validation
+real-world testing
+safe experimentation
+
+STINT-Money is offered as a minimal reference implementation of tetherless structural settlement.
