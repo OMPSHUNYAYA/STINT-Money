@@ -7,46 +7,85 @@
 
 ## **What This Means**
 
-**STINT-Money** can be introduced as a **pre-settlement structural correctness layer**.
+**STINT-Money** can be introduced as a **pre-settlement structural admissibility layer**.
 
-It determines whether a financial state is structurally valid **before entering**:
+It determines whether a declared financial state is structurally complete, consistent, and admissible **before entering**:
 
-- banking systems  
-- payment networks  
-- settlement infrastructure  
+- banking systems
+- payment networks
+- settlement infrastructure
+- downstream execution systems
 
 This layer **does not execute transactions**.
 
 It determines:
 
-- what is correct  
-- what is incomplete  
-- what is conflicting  
-- what must be blocked  
+- what is structurally resolved
+- what is incomplete
+- what is conflicting
+- what must be blocked
+- what is ready
+- what may be released
+- what must remain withheld
+
+Within this reference model:
+
+`admissible_state = resolve(declared_structure)`
+
+---
+
+## **Reference Scope**
+
+In STINT-Money, structural correctness means:
+
+`the resolved state admitted by declared inputs, structural rules, initial conditions, consistency checks, canonicalization, and deterministic implementation behavior`
+
+It does not by itself mean:
+
+- legal settlement
+- transfer of funds
+- regulatory approval
+- cryptographic authorization
+- fraud control
+- identity proof
+- production payment finality
+
+STINT-Money is a deterministic reference model.
+
+It is not a production payment system.
 
 ---
 
 ## **Why This Matters**
 
-Traditional financial systems assume correctness emerges from:
+Traditional financial systems often treat correctness as emerging from:
 
-- transaction execution  
-- ordered processing  
-- synchronized systems  
-- continuous connectivity  
+- transaction execution
+- ordered processing
+- synchronized systems
+- continuous connectivity
+- downstream settlement confirmation
 
-**STINT-Money introduces a different model:**
+**STINT-Money introduces a different structural model:**
+
+`structure governs admissibility`
+
+A compact slogan is:
 
 `correctness = structure`
 
-Correctness is determined **independently of execution**.
+But in this reference model, that means:
+
+`structural correctness within the declared model = complete and consistent declared structure admitted by fixed rules`
 
 This enables:
 
-- safer validation before settlement  
-- reduced dependency on continuous connectivity  
-- deterministic correctness under delay or partition  
-- prevention of unsafe or conflicting state propagation  
+- safer validation before settlement
+- reduced dependency on continuous connectivity as the governing authority
+- deterministic structural resolution under delay or partition
+- explicit preservation of incompleteness
+- explicit visibility of conflict
+- prevention of unsafe or conflicting state propagation
 
 ---
 
@@ -56,20 +95,23 @@ This enables:
 
 ### **Traditional Flow**
 
-`input → transaction → settlement → final state`
+`input -> transaction -> settlement -> final state`
 
-Correctness is inferred **after execution**.
+Correctness is often inferred **after execution** or after downstream confirmation.
 
 ---
 
 ### **STINT-Enhanced Flow**
 
-`input → structure → resolve → activate → settlement (optional)`
+`input -> structure -> resolve -> activate -> settlement`
 
-- `resolve(structure)` determines truth  
-- `activate(structure, dependencies)` controls release  
+- `resolve(structure)` determines structural admissibility
+- `activate(structure, dependencies)` controls operational release
+- settlement remains an external execution layer
 
-Settlement becomes an **optional execution layer**, not the source of correctness.
+Settlement is not removed.
+
+It becomes a downstream execution step rather than the source of the structural correctness decision.
 
 ---
 
@@ -77,35 +119,51 @@ Settlement becomes an **optional execution layer**, not the source of correctnes
 
 STINT-Money introduces a strict separation:
 
-- **Truth Layer** → structural correctness  
-- **Activation Layer** → operational readiness  
-- **Settlement Layer** → external execution (banking/network)  
+- **Structural Truth Layer** -> bounded financial-state admissibility
+- **Activation Layer** -> operational readiness and release control
+- **Settlement Layer** -> external execution through banking, payment, or network systems
 
-This means:
+This means a state can be:
 
-A state can be:
+- `RESOLVED but not RELEASED`
+- structurally valid but not yet operationally applied
+- admissible inside the declared model but still awaiting authorization, dependency satisfaction, or downstream settlement
 
-- **RESOLVED but not RELEASED**  
-- correct but not yet executed  
+Core distinction:
+
+`resolution_state != activation_state`
 
 ---
 
 ## **Transport Independence**
 
-STINT-Money treats transport as an **optional carrier of structure**.
+STINT-Money treats transport as a carrier of structure.
 
 This means:
 
-- network delivery affects availability  
-- it does not determine correctness  
+- network delivery affects availability
+- communication may still be required
+- reconciliation may still be required
+- external systems may still need to be notified
+- downstream settlement may still depend on operational infrastructure
 
-Structural truth remains valid:
+But transport does not govern the structural correctness decision inside the reference model.
 
-- before transmission  
-- during delay  
-- after merge  
+Structural admissibility is determined from:
 
-Correctness is preserved across transport conditions.
+- declared structure
+- completeness
+- consistency
+- rules
+- deterministic implementation behavior
+
+A compact separation is:
+
+`structure -> admissibility`
+
+`transport -> availability`
+
+`activation -> operational release`
 
 ---
 
@@ -113,7 +171,7 @@ Correctness is preserved across transport conditions.
 
 Within an organization:
 
-Multiple internal transfers are defined structurally:
+Multiple internal relationships are declared structurally:
 
 `A_to_B = 30`  
 `B_to_C = 20`  
@@ -121,47 +179,67 @@ Multiple internal transfers are defined structurally:
 
 STINT-Money evaluates:
 
-- structure completeness  
-- consistency across relationships  
+- structure completeness
+- consistency across relationships
+- declared rules
+- dependency conditions
+- activation state
 
 If valid:
 
-`resolve(S) → RESOLVED`
+`resolve(S) -> RESOLVED`
 
-Only the **final required net outcome** is passed to external systems.
+Only the structurally necessary outcome may need to be passed to external systems.
+
+The internal structural result does not by itself mean legal settlement or fund transfer.
 
 ---
 
 ## **Practical Interpretation**
 
-Instead of sending multiple dependent transactions through banking systems:
+Instead of sending multiple dependent actions directly into downstream settlement systems:
 
-- internal structure is resolved first  
-- only necessary external settlement is performed  
+- declared financial structure is evaluated first
+- incomplete structure produces `ABSTAIN`
+- conflicting structure produces `CONFLICT`
+- valid structure produces `RESOLVED`
+- dependency conditions determine `READY`, `BLOCKED`, `RELEASED`, or `FROZEN`
+- only necessary downstream settlement actions are then considered
 
-This reduces:
+This may reduce:
 
-- unnecessary transaction load  
-- synchronization complexity  
-- dependency on continuous connectivity  
+- unnecessary transaction load
+- synchronization pressure
+- premature activation
+- unsafe propagation of conflicting states
+- dependency on continuous connectivity as the correctness authority
 
 ---
 
 ## **Adoption Path**
 
-STINT-Money can be introduced incrementally:
+STINT-Money can be introduced incrementally.
 
 ### **Phase 1 — Validation Layer**
-- pre-settlement correctness check  
-- audit and reconciliation enhancement  
+
+- pre-settlement structural check
+- audit and reconciliation enhancement
+- deterministic replay support
+- conflict and incompleteness visibility
 
 ### **Phase 2 — Internal Structural Layer**
-- intra-organization structural settlement  
-- reduced internal transaction dependency  
+
+- intra-organization structural settlement
+- internal dependency-aware activation
+- reduced internal transaction dependency
+- clearer separation of truth and release
 
 ### **Phase 3 — External Integration**
-- minimal required interaction with banking systems  
-- structural correctness governs external execution  
+
+- minimal required downstream settlement interaction
+- activation control before external execution
+- supervisory visibility before release
+- structural certificate and replay evidence
 
 ---
 
@@ -169,42 +247,74 @@ STINT-Money can be introduced incrementally:
 
 STINT-Money does not:
 
-- replace banks  
-- eliminate financial institutions  
-- remove regulatory requirements  
-- prevent the need for external settlement  
+- replace banks
+- eliminate financial institutions
+- remove regulatory requirements
+- eliminate communication
+- remove all coordination
+- authenticate parties
+- prevent fraud by itself
+- transfer funds by itself
+- provide legal settlement by itself
+- remove the need for downstream settlement
 
 It changes:
 
-- **where correctness is determined**
+- **where structural admissibility is determined**
+- **how incompleteness is preserved**
+- **how conflict is exposed**
+- **how activation is separated from resolution**
 
 ---
 
 ## **Core Principles**
 
-`correctness = structure`  
+`admissible_state = resolve(declared_structure)`
 
-`state_visible iff structure_mature`  
+`resolved_state_visible iff structure_mature`
 
-`dependency failure != truth failure`  
+`structure_mature = structure_complete AND structure_consistent`
+
+`dependency failure != truth failure`
+
+`resolution_state != activation_state`
+
+`READY != RELEASED`
+
+`structure -> admissibility`
+
+`transport -> availability`
+
+`activation -> operational release`
 
 ---
 
 ## **Final Insight**
 
-STINT-Money allows financial systems to:
+STINT-Money allows a financial system to examine whether a declared financial state is structurally admissible before downstream settlement occurs.
 
-- determine correctness independently  
-- remain safe under disconnection  
-- converge deterministically under delay  
+It allows systems to:
 
-Settlement becomes:
+- preserve structural truth under disconnection
+- remain safe under delay
+- expose incomplete structure
+- expose conflicting structure
+- separate resolution from activation
+- converge deterministically when sufficient structure is available
 
-- an execution step  
-- not the source of truth  
+Settlement remains:
+
+- an execution step
+- an institutional step
+- a legal and operational step
+- not the source of structural admissibility inside the reference model
 
 ---
 
 ## ⭐ **One-Line Summary**
 
-STINT-Money introduces a pre-settlement structural layer where financial correctness is determined from structure before any network-dependent execution occurs.
+STINT-Money introduces a pre-settlement structural layer where bounded financial-state admissibility is determined from complete and consistent declared structure before network-dependent activation or downstream settlement occurs.
+
+Within the declared model:
+
+**Structure governs admissibility. Operations may remain.**
