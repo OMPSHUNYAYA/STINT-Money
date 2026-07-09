@@ -3,9 +3,9 @@
 **Structural Integrity in Tetherless Systems**  
 **Shunyaya Structural Settlement Model**
 
-**Deterministic • Tetherless • Structure-Based Financial Correctness**
+**Deterministic • Tetherless • Structure-Based Financial-State Admissibility**
 
-**No Continuous Connectivity • No Synchronization • No Ordered Communication**
+**Continuous Connectivity Not the Governing Authority • Synchronization Not the Governing Authority • Ordered Communication Not the Governing Authority**
 
 ---
 
@@ -13,161 +13,222 @@
 
 ### **A1. What is STINT-Money?**
 
-STINT-Money is a structural settlement model for financial correctness under reduced network dependency.
+STINT-Money is a structural settlement reference model for bounded financial-state resolution under reduced network dependency.
 
-Instead of determining correctness from:
+Instead of treating the following as the governing authority:
 
-- continuous connectivity  
-- synchronized communication  
-- ordered message exchange  
+- continuous connectivity
+- synchronized communication
+- ordered message exchange
 
-STINT-Money determines correctness from:
+STINT-Money resolves a bounded financial state from:
 
-- structure completeness and consistency  
+- declared structure
+- structural completeness
+- structural consistency
+- declared rules
+- deterministic implementation behavior
 
-Financial truth is not guaranteed by the network —  
-it is preserved by structure.
+Within this reference model:
+
+`admissible_state = resolve(declared_structure)`
 
 ---
 
-### **A2. How does STINT-Money fit within the broader Shunyaya stack?**
+### **A2. What does “correctness” mean in STINT-Money?**
 
-STINT-Money is the network-layer extension of structural correctness.
+In STINT-Money, structural correctness means:
+
+`the resolved state admitted by declared inputs, structural rules, initial conditions, consistency checks, canonicalization, and deterministic implementation behavior`
+
+It does not by itself mean:
+
+- legal settlement
+- transfer of funds
+- regulatory approval
+- cryptographic authorization
+- fraud control
+- identity proof
+- production payment finality
+
+This distinction is important.
+
+STINT-Money verifies bounded structural admissibility.
+
+It does not certify a real-world financial system.
+
+---
+
+### **A3. How does STINT-Money fit within the broader Shunyaya stack?**
+
+STINT-Money is the connectivity-layer extension of structural financial-state admissibility.
 
 Related layers include:
 
-- SLANG-Money → removes execution dependency  
-- ORL-Money → removes ordering dependency  
-- STINT-Money → removes continuous network dependency  
+- `SLANG-Money -> reduces execution workflow as the sole resolution authority`
+- `ORL-Money -> reduces arrival order as the sole resolution authority`
+- `STINT-Money -> reduces continuous connectivity as the sole resolution authority`
 
 In simplified form:
 
-SLANG proves:
+`SLANG -> correctness is not governed only by execution workflow`
 
-`correctness != execution`
+`ORL -> correctness is not governed only by arrival order`
 
-ORL proves:
+`STINT -> correctness is not governed only by continuous connectivity`
 
-`correctness != order`
-
-STINT proves:
-
-`correctness != continuous connectivity`
-
-STINT-Money focuses specifically on financial correctness under isolation, delay, unordered availability, and dependency-aware activation.
+STINT-Money focuses specifically on bounded financial-state resolution under isolation, delay, unordered availability, and dependency-aware activation.
 
 ---
 
-### **A3. What problem does STINT-Money solve?**
+### **A4. What problem does STINT-Money examine?**
 
-Modern systems assume:
+Many financial and distributed systems assume:
 
-- systems must remain connected  
-- messages must arrive in order  
-- state must be synchronized continuously  
+- systems must remain connected
+- messages must arrive in order
+- state must be continuously synchronized
+- activation and correctness are the same thing
 
 These assumptions introduce:
 
-- network dependency  
-- synchronization fragility  
-- failure under partition  
-- operational coupling  
+- network dependency
+- synchronization fragility
+- failure under partition
+- operational coupling
+- unsafe pressure to resolve incomplete states
 
-STINT-Money shows:
-
-financial correctness can survive:
-
-- disconnection  
-- delay  
-- unordered merge  
-- independent operation  
+STINT-Money examines whether a bounded financial state can remain deterministically resolvable when continuous connectivity is not treated as the governing authority.
 
 ---
 
-### **A4. What does “money without network dependency” mean?**
+### **A5. What does “money without network dependency” mean?**
 
 It means:
 
-financial correctness does not require:
+continuous network connectivity is not required as the governing authority over the structural correctness decision.
 
-- continuous connectivity  
-- real-time synchronization  
-- ordered communication  
+It does not mean:
 
-Instead:
+- no communication ever
+- no external settlement ever
+- no banking systems
+- no authorization
+- no reconciliation
+- no regulation
+- no operational infrastructure
 
-correct state emerges when structurally sufficient information becomes available.
+The narrower claim is:
+
+`complete and consistent declared structure can admit a deterministic financial state before network-dependent activation or downstream settlement occurs`
 
 ---
 
-### **A5. Core idea in one line**
+### **A6. Core idea in one line**
+
+`structure governs admissibility`
+
+A compact slogan is:
 
 `correctness = structure`
 
-This means:
+But in STINT-Money this should be read as:
 
-- correctness does not depend on execution, ordering, or continuous connectivity  
-- it depends only on complete and consistent structure  
+`structural correctness within the declared model = complete and consistent declared structure admitted by fixed rules`
+
+A safer technical form is:
+
+`admissible outcome = resolve(declared structure)`
 
 ---
 
-### **A6. Is STINT-Money a payment system?**
+### **A7. Is STINT-Money a payment system?**
 
 No.
 
-It is a structural settlement model, not an operational payment system.
+STINT-Money is not an operational payment system.
+
+It is a deterministic structural settlement reference model.
 
 It defines:
 
-- what is correct  
-- what is incomplete  
-- what must be blocked  
-- what must be escalated  
+- what is structurally resolved
+- what is incomplete
+- what is conflicting
+- what is blocked
+- what is ready
+- what is released
+- what is frozen
+- what must be escalated
 
 ---
 
-### **A7. Does STINT-Money replace existing systems?**
+### **A8. Does STINT-Money replace existing systems?**
 
 No.
 
-It can act as:
+STINT-Money may be used as a reference pattern for:
 
-- settlement validation layer  
-- reconciliation layer  
-- offline-safe settlement model  
-- supervisory correctness layer  
+- pre-settlement validation
+- reconciliation support
+- offline-safe structural evaluation
+- supervisory visibility
+- partition-resilient audit models
+
+It does not replace:
+
+- banks
+- payment networks
+- compliance systems
+- identity systems
+- authorization systems
+- fraud controls
+- legal settlement mechanisms
 
 ---
 
-### **A8. Does it change financial outcomes?**
+### **A9. Does it change financial outcomes?**
 
 No.
 
-For valid structure:
+For valid declared structure inside the reference model:
 
-`classical outcome = STINT outcome`
+`classical_result(S) = STINT_result(S)`
 
-Difference:
+STINT-Money does not redefine financial arithmetic.
 
-STINT refuses unsafe resolution under:
+The difference is that STINT-Money refuses unsafe admission under:
 
-- insufficient structure  
-- conflict  
-- dependency failure  
+- insufficient structure
+- conflicting structure
+- dependency failure
+- supervisory withholding
+
+It separates:
+
+`structural resolution`
+
+from:
+
+`operational activation`
 
 ---
 
-### **A9. Is this only for finance?**
+### **A10. Is this only for finance?**
 
 No.
 
-The same principle applies to:
+The same structural pattern may be explored in:
 
-- distributed systems  
-- network protocols  
-- supply chains  
-- disaster-resilient systems  
-- offline-first architectures  
+- distributed systems
+- network protocols
+- supply chains
+- disaster-resilient systems
+- offline-first architectures
+- audit systems
+- identity and evidence systems
+
+Each domain needs its own bounded rules, implementation, verification, and limitations.
 
 ---
 
@@ -175,76 +236,103 @@ The same principle applies to:
 
 ### **B1. What is “structure” in STINT-Money?**
 
-Structure is the complete and consistent set of relationships required to define financial truth.
+Structure is the declared set of relationships, values, constraints, and rules required to resolve a bounded financial state.
 
 Example:
 
-`A_to_B = 30`  
-`B_to_C = 20`  
+`A_to_B = 30`
+
+`B_to_C = 20`
+
 `C_to_A = 10`
 
-These define a transfer graph, not executed transactions.
+These define a relationship graph.
 
-Structure expresses relationships —  
-not movement.
+They are not executed transactions by themselves.
+
+Structure expresses relationships.
+
+It does not by itself move money.
 
 ---
 
-### **B2. When is a state valid?**
+### **B2. When is a financial state resolved?**
 
-Only when:
+A financial state becomes `RESOLVED` only when:
 
-`structure_mature = complete AND consistent`
+`structure_mature = structure_complete AND structure_consistent`
 
-State becomes visible only when this condition is satisfied.
+The resolved state is admitted only when the declared rules are satisfied.
+
+A safer expression is:
+
+`resolved_state_visible iff structure_mature`
 
 ---
 
 ### **B3. What if structure is incomplete?**
 
-State:
+The result is:
 
-**ABSTAIN (insufficient structure)**
+`ABSTAIN`
 
-No resolution occurs.
+This means:
+
+no resolved financial outcome is admitted under the current declared structure.
+
+Incomplete structure does not produce a forced result.
 
 ---
 
 ### **B4. What if structure conflicts?**
 
-State:
+The result is:
 
-**CONFLICT**
+`CONFLICT`
 
-No unsafe resolution occurs.
+This means:
+
+the available structure is inconsistent under the declared rules.
+
+No unsafe resolved outcome is admitted.
 
 ---
 
 ### **B5. What is RESOLVED?**
 
-`structure_mature → RESOLVED`
+`RESOLVED` means the declared structure is complete and consistent under the reference rules.
 
-State becomes visible and stable.
+For the reference model:
+
+`structure_mature -> RESOLVED`
 
 ---
 
 ### **B6. Why no forced resolution?**
 
-Because:
+Because an unsupported result is more dangerous than an explicitly unresolved state.
 
-`incorrect resolution > delayed resolution`
+In STINT-Money:
+
+`incomplete structure -> ABSTAIN`
+
+`conflicting structure -> CONFLICT`
+
+The model preserves incompleteness and conflict instead of hiding them.
 
 ---
 
 ### **B7. Why no auto-correction?**
 
-Because:
+Because silent correction hides structural errors.
 
-silent correction hides structural errors
+STINT-Money enforces explicit structural validity.
 
-STINT enforces:
+The model does not guess.
 
-explicit structural validity
+The model does not approximate.
+
+The model does not silently repair declared structure.
 
 ---
 
@@ -252,13 +340,15 @@ explicit structural validity
 
 ### **C1. What does “tetherless” mean?**
 
-Systems do not require continuous network connectivity for correctness.
+Tetherless means that continuous connectivity is not required as the governing authority over the structural resolution decision.
 
-Nodes can:
+Nodes or systems may:
 
-- operate independently  
-- remain offline  
-- merge later  
+- operate independently
+- remain disconnected
+- hold partial structure
+- merge structure later
+- preserve unresolved states safely
 
 ---
 
@@ -266,32 +356,63 @@ Nodes can:
 
 Yes.
 
-But it is:
+Communication may still be required for:
 
-- optional carrier of structure  
-- not a source of correctness  
+- transferring structure
+- notifying external systems
+- reconciling with other parties
+- activating downstream settlement
+- audit exchange
+- legal or institutional finality
+
+But communication is treated as:
+
+`transport -> availability`
+
+not:
+
+`transport -> structural correctness`
 
 ---
 
-### **C3. Does order of arrival matter?**
+### **C3. Does arrival order matter?**
 
-No.
+Inside the supported reference merge model, arrival order does not govern the resolved result.
+
+Supported merge behavior follows the structural pattern:
 
 `merge(S1, S2) = merge(S2, S1)`
+
+The key idea is:
+
+`supported merge order does not create financial truth`
+
+The resolved outcome is governed by the complete and consistent declared structure.
 
 ---
 
 ### **C4. Does time matter?**
 
-No.
+Time may matter operationally.
 
-Correctness is not dependent on clocks or timing.
+It may affect:
+
+- availability
+- deadlines
+- reconciliation windows
+- regulatory timelines
+- external settlement
+- audit context
+
+But inside the reference model, clocks and timing do not govern the bounded structural resolution decision.
 
 ---
 
 ### **C5. What drives convergence?**
 
-Structure completion.
+Structural sufficiency.
+
+A resolved state becomes available when the required declared structure becomes complete and consistent under the rules.
 
 ---
 
@@ -299,37 +420,120 @@ Structure completion.
 
 ### **D1. How does STINT-Money differ from existing systems?**
 
-Traditional models:
+Traditional distributed models often rely on:
+
+- communication
+- replication
+- ordered logs
+- consensus
+- coordination
+- global agreement
+- synchronized state
+
+STINT-Money examines a narrower structural question:
+
+Can a bounded financial state be deterministically resolved from complete and consistent declared structure without continuous connectivity acting as the governing authority?
+
+Traditional shorthand:
 
 `correctness = communication + replication + agreement`
 
-STINT-Money:
+STINT-Money shorthand:
 
-`correctness = structure`
+`admissible outcome = resolve(declared structure)`
 
-Communication, replication, consensus, and cryptography become:
+---
 
-- optional layers  
-- not fundamental sources of correctness  
+### **D2. Is STINT-Money a CRDT?**
+
+No.
+
+CRDTs are designed for replicated data convergence.
+
+STINT-Money is a structural settlement reference model.
+
+It does not claim that replication itself creates correctness.
+
+It examines whether a bounded financial state can be admitted from declared structure once that structure is sufficient.
+
+---
+
+### **D3. Is STINT-Money eventual consistency?**
+
+No.
+
+Eventual consistency depends on systems eventually exchanging enough information to converge.
+
+STINT-Money does not deny that information must become available.
+
+It separates:
+
+`availability of structure`
+
+from:
+
+`admissibility of state`
+
+Communication may affect when structure becomes available.
+
+It does not act as the sole authority over the structural correctness decision.
+
+---
+
+### **D4. Is STINT-Money a blockchain or ledger system?**
+
+No.
+
+Blockchain systems typically rely on:
+
+- ordered blocks
+- consensus
+- network participation
+- global finality rules
+
+STINT-Money does not require global ordering inside the reference resolution model.
+
+It resolves bounded declared structure and separates truth from activation.
+
+Consensus or ledger systems may still be used as downstream or external layers.
+
+---
+
+### **D5. Does STINT-Money replace cryptography?**
+
+No.
+
+Cryptography can still be necessary for:
+
+- identity
+- signing
+- authentication
+- origin verification
+- non-repudiation
+- secure transport
+
+STINT-Money certificates are deterministic structural certificates.
+
+They are not legal signatures or authorization proofs by themselves.
 
 ---
 
 ## **SECTION E — Resolution & Activation States**
 
-### **E1. Resolution states**
+### **E1. What are resolution states?**
 
-- **RESOLVED** → structurally valid  
-- **ABSTAIN** → insufficient structure  
-- **CONFLICT** → inconsistent structure  
+- `RESOLVED -> structurally valid`
+- `ABSTAIN -> insufficient structure`
+- `CONFLICT -> inconsistent structure`
 
 ---
 
-### **E2. Activation states**
+### **E2. What are activation states?**
 
-- **RELEASED** → operationally applied  
-- **READY** → structurally valid and dependency satisfied  
-- **BLOCKED** → prevented by dependency or conflict  
-- **FROZEN** → intentionally withheld  
+- `READY -> structurally resolved and dependency satisfied`
+- `RELEASED -> operationally applied in the model`
+- `BLOCKED -> prevented by dependency, conflict, or unresolved condition`
+- `FROZEN -> intentionally withheld`
 
 ---
 
@@ -337,13 +541,57 @@ Communication, replication, consensus, and cryptography become:
 
 Because:
 
-`truth != activation`
+`resolution_state != activation_state`
+
+A batch can be:
+
+`RESOLVED + BLOCKED`
+
+This means:
+
+the structure is valid, but operational activation is not allowed.
 
 ---
 
-### **E4. Visibility rule**
+### **E4. What is the visibility rule?**
 
-`state_visible iff structure_mature`
+The resolved financial state becomes visible only when the structure is mature:
+
+`resolved_state_visible iff structure_mature`
+
+Safety states can still be visible:
+
+`incomplete structure -> ABSTAIN`
+
+`conflicting structure -> CONFLICT`
+
+---
+
+### **E5. What is the difference between READY and RELEASED?**
+
+`READY` means:
+
+- structurally resolved
+- dependency conditions are satisfied
+- eligible for release
+
+`RELEASED` means:
+
+- operational release has occurred inside the reference model
+
+Therefore:
+
+`READY != RELEASED`
+
+---
+
+### **E6. Why is FROZEN necessary?**
+
+A batch may be structurally valid and dependency-satisfied, yet intentionally withheld.
+
+`FROZEN` preserves structural truth while preventing operational release.
+
+This supports supervisory control.
 
 ---
 
@@ -351,29 +599,93 @@ Because:
 
 ### **F1. Is STINT-Money deterministic?**
 
-Yes.
+Yes, inside the reference model.
+
+Given the same complete canonical structure, same rules, and same implementation version:
+
+`same complete canonical structure + same rules + same implementation version -> same resolved state`
 
 ---
 
 ### **F2. Will independent systems agree?**
 
-Yes.
+They should agree if all relevant conditions are the same:
 
-`same structure → same canonical result`
+- same complete canonical structure
+- same rules
+- same initial conditions
+- same implementation version
+- same deterministic execution conditions
+
+Then:
+
+`same conditions -> same resolved state`
 
 ---
 
-### **F3. Strongest convergence rule**
+### **F3. What is the strongest convergence rule?**
 
-`same structural truth → same canonical merged capsule`
+`same complete canonical structure -> same canonical merged capsule`
+
+within the same rules and implementation version.
+
+---
+
+### **F4. Does merge path matter?**
+
+Inside the supported reference merge model:
+
+`supported merge path does not govern the final resolved state`
+
+Dedicated shuffled merge-order tests may be added in later versions.
 
 ---
 
 ## **SECTION G — Dependency Model**
 
-### **G1. Key principle**
+### **G1. What are dependencies in STINT-Money?**
+
+Dependencies define activation constraints.
+
+Example:
+
+`BATCH-2 depends_on BATCH-1`
+
+A dependency can block activation without erasing structural truth.
+
+---
+
+### **G2. What happens if dependency fails?**
+
+The activation state becomes:
+
+`BLOCKED`
+
+The resolution state may remain:
+
+`RESOLVED`
+
+Key principle:
 
 `dependency failure != truth failure`
+
+---
+
+### **G3. What is release control?**
+
+Release is explicitly modeled using:
+
+`release_mode = auto | manual`
+
+`release_if = dependency set`
+
+This separates:
+
+`READY`
+
+from:
+
+`RELEASED`
 
 ---
 
@@ -381,49 +693,92 @@ Yes.
 
 ### **H1. What is a capsule?**
 
-A self-validating structural object containing:
+A capsule is a self-validating structural object containing items such as:
 
-- visible_state  
-- certificate  
-- structural_time  
-- policy_action  
+- `visible_state`
+- `certificate`
+- `structural_time`
+- `policy_action`
 
 ---
 
 ### **H2. Why capsules?**
 
-They enable:
+Capsules enable:
 
-- offline correctness  
-- portable validation  
-- tamper detection  
+- portable structural validation
+- offline replay
+- tamper detection
+- canonical representation
+- supervisory rollup
+
+---
+
+### **H3. What is a canonical capsule?**
+
+A canonical capsule is a stable structural representation derived from resolved structure.
+
+It should not depend on:
+
+- supported merge order
+- supported merge path
+- origin labeling
+
+within the declared reference rules.
+
+---
+
+### **H4. What does a certificate prove?**
+
+A structural certificate proves reproducibility of resolved structure inside the reference model.
+
+It does not by itself prove:
+
+- legal settlement
+- identity
+- authorization
+- regulatory approval
+- cryptographic signing
+- real-world fund transfer
 
 ---
 
 ## **SECTION I — Safety & Integrity**
 
-### **I1. Tampering**
+### **I1. How is tampering detected?**
 
-Detected via:
+Tampering is detected through validation failures such as:
 
-- payload mismatch  
-- certificate mismatch  
-
----
-
-### **I2. Incomplete data**
-
-Produces:
-
-**ABSTAIN**
+- payload mismatch
+- certificate mismatch
+- capsule ID mismatch
+- policy mismatch
 
 ---
 
-### **I3. Conflicting data**
+### **I2. What does incomplete data produce?**
 
-Produces:
+`ABSTAIN`
 
-**CONFLICT**
+Incomplete data does not produce a forced resolution.
+
+---
+
+### **I3. What does conflicting data produce?**
+
+`CONFLICT`
+
+Conflicting data does not produce an admitted resolved state.
+
+---
+
+### **I4. What does dependency failure produce?**
+
+`BLOCKED`
+
+Dependency failure blocks activation.
+
+It does not erase structural truth.
 
 ---
 
@@ -431,25 +786,67 @@ Produces:
 
 ### **J1. What changes?**
 
-From:
+Traditional view:
 
 `state = result of synchronized processing`
 
-To:
+STINT-Money reference view:
 
-`state = resolve(structure)`
+`admissible state = resolve(declared structure)`
+
+---
+
+### **J2. What is the role of the network?**
+
+The network affects:
+
+- availability
+- transmission
+- reconciliation
+- external coordination
+- downstream settlement
+
+The network does not govern the structural correctness decision inside the reference model.
+
+---
+
+### **J3. What is the core separation?**
+
+STINT-Money separates:
+
+`structure -> admissibility`
+
+`transport -> availability`
+
+`activation -> operational release`
 
 ---
 
 ## **SECTION K — Core Shift**
 
+### **K1. What is the main shift?**
+
 From:
 
-“is the system connected?”
+`is the system connected?`
 
 To:
 
-“is the structure valid?”
+`is the structure complete, consistent, and admitted by the rules?`
+
+---
+
+### **K2. Why is this important?**
+
+Because systems can avoid forcing unsafe outcomes when operational mechanisms are delayed, disconnected, unavailable, or unordered.
+
+The model preserves:
+
+- completeness
+- incompleteness
+- conflict
+- activation state
+- supervisory state
 
 ---
 
@@ -457,40 +854,109 @@ To:
 
 ### **L1. Structural progression**
 
-- STIME → time without clocks  
-- SSUM-Time → time independence  
-- SLANG → no execution  
-- ORL → no ordering  
-- STINT → no continuous connectivity  
+- `STIME -> structural progression without clock input as sole authority`
+- `SSUM-Time -> structural time reconstruction and recovery`
+- `SLANG -> reduces execution workflow as sole authority`
+- `ORL -> reduces ordering as sole authority`
+- `STINT -> reduces continuous connectivity as sole authority`
+
+---
+
+### **L2. What connects these systems?**
+
+The recurring Shunyaya pattern is:
+
+- normalize structure
+- check completeness
+- check consistency
+- expose conflict
+- preserve incompleteness
+- admit only supported outcomes
+- preserve evidence for replay
 
 ---
 
 ## **SECTION M — Adoption & Implementation**
 
-Connectivity requirement:
+### **M1. Where can STINT-Money be useful?**
 
-**Not required for correctness**
+Possible uses include:
+
+- pre-settlement validation
+- internal structural settlement
+- reconciliation support
+- offline-safe audit
+- supervisory visibility
+- partition recovery research
+
+---
+
+### **M2. Is continuous connectivity required?**
+
+Not as the governing authority over structural admissibility.
+
+Connectivity may still be required for:
+
+- external communication
+- downstream settlement
+- inter-party reconciliation
+- regulatory reporting
+- operational activation
+
+---
+
+### **M3. What is the minimal integration pattern?**
+
+`financial fragments -> structural resolution -> dependency-aware activation -> optional downstream settlement`
 
 ---
 
 ## **SECTION N — Boundaries**
 
-STINT-Money does NOT:
+### **N1. What does STINT-Money not claim?**
 
-- replace full production systems  
-- eliminate communication  
-- remove all coordination  
-- define full financial semantics  
+STINT-Money does not claim to:
+
+- replace full production systems
+- eliminate communication
+- remove all coordination
+- define full financial semantics
+- provide legal settlement
+- transfer funds
+- authenticate parties
+- prevent fraud
+- satisfy regulation
+- provide production security
+
+---
+
+### **N2. What is the correct interpretation?**
+
+STINT-Money is:
+
+- a deterministic reference model
+- a bounded structural demonstration
+- a reproducibility artifact
+- a proof-of-principle for structural financial-state admissibility
+
+It is not:
+
+- a production-certified financial system
+- a universal proof
+- a regulatory framework
+- a complete payment network
 
 ---
 
 ## **SECTION O — Skeptic Questions**
 
-### **O1. Is network completely removed?**
+### **O1. Is the network completely removed?**
 
 No.
 
-Only continuous dependency is removed.
+Only continuous connectivity is removed as the governing authority over the bounded structural resolution decision.
+
+Communication may still be required operationally.
 
 ---
 
@@ -498,36 +964,86 @@ Only continuous dependency is removed.
 
 No.
 
-It resolves structure, not process.
+Delayed processing waits for a process to resume.
+
+STINT-Money resolves declared structure under explicit rules.
+
+The key question is not only:
+
+`did the process finish?`
+
+The key question is:
+
+`is the declared structure sufficient for an admitted outcome?`
 
 ---
 
-### **O3. Is this reconciliation?**
+### **O3. Is this just reconciliation?**
 
 No.
 
-STINT derives correctness directly from structure.
+Reconciliation usually compares or repairs states after processing.
+
+STINT-Money resolves bounded financial-state admissibility directly from declared structure.
+
+Reconciliation may still be used as an external or downstream process.
 
 ---
 
 ### **O4. Can it fail?**
 
-Yes — if structure is incorrect.
+Yes.
+
+It can produce:
+
+`ABSTAIN`
+
+or:
+
+`CONFLICT`
+
+This is a safety feature.
+
+The model refuses unsupported or inconsistent outcomes.
 
 ---
 
 ### **O5. Conservative interpretation**
 
-Financial correctness can survive disconnection.
+A bounded financial state can remain structurally preserved under disconnection until sufficient structure is available for deterministic resolution.
 
 ---
 
 ### **O6. Strong interpretation**
 
-Continuous connectivity may not be fundamental to correctness.
+Continuous connectivity may not be fundamental to bounded financial-state admissibility when complete and consistent declared structure is available.
+
+---
+
+### **O7. Is STINT-Money anti-network?**
+
+No.
+
+STINT-Money does not reject networks.
+
+It changes the authority model:
+
+`network -> availability`
+
+`structure -> admissibility`
+
+---
+
+### **O8. What is the most precise one-line technical claim?**
+
+`same complete canonical structure + same rules + same implementation version -> same resolved state`
 
 ---
 
 ## ⭐ **Final One-Line Summary**
 
-STINT-Money is a deterministic structural settlement model in which financial correctness is preserved by structure rather than continuous network dependency, allowing independent systems to converge safely under delayed and unordered availability while explicitly separating truth, readiness, activation, and supervisory control.
+STINT-Money is a deterministic structural settlement reference model in which bounded financial-state admissibility is governed by complete and consistent declared structure rather than continuous network connectivity, while truth, readiness, activation, and supervisory control remain explicitly separated.
+
+Within the declared model:
+
+**Structure governs admissibility. Operations may remain.**
