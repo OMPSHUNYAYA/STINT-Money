@@ -6,209 +6,274 @@
 
 ## **Overview**
 
-This document provides a **minimal proof sketch** for the deterministic structural guarantees of **STINT-Money** under its tetherless settlement model.
+This document provides a **minimal proof sketch** for the deterministic structural guarantees of **STINT-Money** under its tetherless settlement reference model.
 
 STINT-Money is intentionally minimal.
 
-Its correctness does **not** come from:
+It examines whether a bounded financial state can be resolved from declared structure without treating the following as the governing authority:
 
-- continuous connectivity  
-- synchronized communication  
-- ordered message exchange  
-- real-time coordination  
+- continuous connectivity
+- synchronized communication
+- ordered message exchange
+- real-time coordination
 
-It comes from:
+The reference model resolves state from:
 
-- **deterministic structural evaluation of completeness and consistency under delayed and unordered availability**
+- declared structure
+- structural completeness
+- structural consistency
+- declared rules
+- deterministic implementation behavior
+
+Within this reference model:
+
+`admissible_state = resolve(declared_structure)`
+
+---
+
+## **Reference Scope**
+
+In STINT-Money, structural correctness means:
+
+`the resolved state admitted by declared inputs, structural rules, initial conditions, consistency checks, canonicalization, and deterministic implementation behavior`
+
+It does not by itself mean:
+
+- legal settlement
+- transfer of funds
+- regulatory approval
+- cryptographic authorization
+- fraud control
+- identity proof
+- production payment finality
+
+This proof sketch applies to the **STINT-Money reference model**.
+
+It does not certify a real-world financial system.
 
 ---
 
 ## **STINT Theorem (Reference Claim)**
 
-Given complete and consistent financial structure `S`:
+Given complete and consistent declared financial structure `S` within this reference model:
 
-`correctness = resolve(S)`
+`admissible_state = resolve(S)`
 
-and is independent of:
+The structural resolution decision is governed by declared structure and rules, not by continuous connectivity, synchronized exchange, or message arrival order.
 
-- continuous connectivity  
-- synchronization  
-- ordered communication  
+Connectivity, synchronization, and message ordering may still affect:
 
-These factors affect only:
+- when structure becomes available
+- when reconciliation can occur
+- when activation is permitted
+- when external systems can be notified or updated
+- when downstream settlement occurs
 
-- structural availability  
-- activation eligibility  
-
-They do **not** determine financial truth.
+They do not act as the sole governing authority over the bounded structural resolution decision.
 
 ---
 
 ## **1. Deterministic Structural Resolution**
 
-Each system evaluates the same structure using identical resolution rules.
+Each system evaluates the same declared structure using the same deterministic resolution rules.
 
 Resolution is defined as:
 
 `resolve(S)`
 
-Since the resolution function is deterministic:
+If the relevant conditions are identical:
 
-`if S_A = S_B, then resolve(S_A) = resolve(S_B)`
+`S_A = S_B`
+
+and the rules and implementation version are identical, then:
+
+`resolve(S_A) = resolve(S_B)`
 
 Thus:
 
-**identical structure → identical resolution outcome**
+`same complete canonical structure + same rules + same implementation version -> same resolved state`
 
-This holds independent of:
+This holds inside the reference model independently of:
 
-- network timing  
-- arrival delay  
-- message ordering  
-- merge path  
+- network timing
+- arrival delay
+- message ordering
+- transport conditions
 
-Correctness depends only on **structural equivalence**.
+The resolved state depends on structural equivalence under the declared rules.
 
 ---
 
-## **2. Order-Independent Merge**
+## **2. Supported Order-Independent Merge**
 
-Structure is treated as a **set**, not a sequence.
+In the reference model, supported structural fragments are merged as declared structure rather than as a time sequence.
+
+For supported fragments:
 
 `merge(S1, S2) = merge(S2, S1)`
 
-Thus:
+Therefore:
 
 `resolve(merge(S1, S2)) = resolve(merge(S2, S1))`
 
-Therefore:
+The key point is:
 
-resolution is invariant under:
+`supported merge order does not govern the resolved state`
 
-- arrival order  
-- merge order  
-- merge path  
+This does not mean every real-world message stream is order-independent.
 
-No ordered communication is required for correctness.
+It means the reference model admits only the structural content required for deterministic resolution, while conflicts remain visible.
 
 ---
 
 ## **3. Structural Validity Boundary**
 
-Resolution is governed by a strict acceptance condition:
+Resolution is governed by a strict maturity condition:
 
-`structure_mature = complete AND consistent`
+`structure_mature = structure_complete AND structure_consistent`
 
 Only when this condition is satisfied:
 
-`resolve(S) → RESOLVED`
+`resolve(S) -> RESOLVED`
 
 Otherwise:
 
-- `resolve(S) → ABSTAIN` (insufficient structure)  
-- `resolve(S) → CONFLICT` (inconsistent structure)  
+`resolve(S) -> ABSTAIN`
+
+or:
+
+`resolve(S) -> CONFLICT`
+
+The meanings are:
+
+- `RESOLVED -> complete and consistent structure`
+- `ABSTAIN -> insufficient structure`
+- `CONFLICT -> inconsistent structure`
 
 Thus:
 
-**correctness is defined strictly by structural validity**
+`resolved_state_visible iff structure_mature`
+
+Safety states remain visible:
+
+`incomplete structure -> ABSTAIN`
+
+`conflicting structure -> CONFLICT`
 
 ---
 
-## **4. Tetherless Convergence**
+## **4. Tetherless Structural Resolution**
 
-Let independent nodes hold partial structures:
+Let independent nodes or systems hold partial structures:
 
 `S1, S2, S3, ...`
 
 These may be:
 
-- disconnected  
-- delayed  
-- unordered  
-- independently produced  
+- disconnected
+- delayed
+- unordered
+- independently produced
+- temporarily unavailable
 
-At any later point:
+At a later point, available structure may be combined:
 
 `S_total = merge(S1, S2, S3, ...)`
 
-If `S_total` is structurally complete and consistent:
+If `S_total` is complete and consistent under the declared rules:
 
-`resolve(S_total) → RESOLVED`
+`resolve(S_total) -> RESOLVED`
 
-Thus:
+If it is incomplete:
 
-**delayed unordered availability → deterministic convergence**
+`resolve(S_total) -> ABSTAIN`
 
-No continuous connectivity is required.
+If it is inconsistent:
+
+`resolve(S_total) -> CONFLICT`
+
+Therefore:
+
+`transport affects availability`
+
+while:
+
+`structure governs admissibility`
+
+Continuous connectivity is not the governing authority over the structural resolution decision.
 
 ---
 
 ## **5. Canonical Convergence**
 
-Define canonical representation:
+Define a canonical representation for the resolved visible state:
 
 `canonical(resolve(S))`
 
-Canonical form depends only on **structural truth**.
+Canonical form depends on the resolved structure under the declared rules.
 
-If:
+If two systems have:
 
-`resolve(S_A) = resolve(S_B)`
+- the same complete canonical structure
+- the same rules
+- the same initial conditions
+- the same implementation version
+- the same deterministic execution conditions
 
-then:
+then they produce the same canonical result:
 
 `canonical(resolve(S_A)) = canonical(resolve(S_B))`
 
 Thus:
 
-**same structural truth → same canonical merged capsule**
+`same complete canonical structure -> same canonical merged capsule`
 
-Canonical form is invariant under:
-
-- merge order  
-- origin node  
-- merge path  
+within the same reference rules and implementation version.
 
 ---
 
 ## **6. Structural Capsules and Validation**
 
-Each node emits a structural capsule:
+Each node may emit a structural capsule:
 
 `capsule = f(visible_state, structural_time, certificate)`
 
-Capsules are self-validating:
+Capsules are validated by deterministic checks:
 
 `validate(capsule) = True or False`
 
-If tampering occurs:
+If tampering occurs, validation fails:
 
-`validate(capsule) = False`
+`tampered capsule -> validate(capsule) = False`
+
+Validation may detect:
+
+- payload mismatch
+- certificate mismatch
+- capsule ID mismatch
+- policy mismatch
 
 Thus:
 
-- invalid capsules are rejected  
-- valid capsules remain portable across disconnected systems  
+- invalid capsules are rejected
+- valid capsules remain replayable
+- structural certificates remain reproducible inside the reference model
 
-Capsules enable:
-
-- offline correctness  
-- delayed verification  
-- tamper detection  
+A structural certificate is not a legal signature, regulatory approval, identity proof, or cryptographic authorization by itself.
 
 ---
 
 ## **7. Separation of Resolution and Activation**
 
-STINT-Money separates **truth** from **operational activation**.
+STINT-Money separates structural resolution from operational activation.
 
 Resolution:
 
-`resolve(S) → resolution_state`
+`resolve(S) -> resolution_state`
 
 Activation:
 
-`activate(S, dependencies) → activation_state`
+`activate(S, dependencies) -> activation_state`
 
 Thus:
 
@@ -218,37 +283,43 @@ A batch may satisfy:
 
 `resolve(S) = RESOLVED`
 
-but:
+but still have:
 
 `activate(S) = BLOCKED`
 
 Therefore:
 
-**structural truth exists independently of operational readiness**
+`dependency failure != truth failure`
+
+The structure may be valid while activation remains unsafe or unavailable.
 
 ---
 
 ## **8. Dependency-Aware Activation**
 
-Let a batch depend on another:
+Let a batch depend on another batch:
 
 `B2 depends_on B1`
 
-Activation rule:
+A simplified activation condition is:
 
-`activate(B2) = READY iff resolve(B2) = RESOLVED AND resolve(B1) = RESOLVED`
+`activate(B2) = READY iff resolve(B2) = RESOLVED AND dependency_conditions(B2) are satisfied`
 
-If dependency fails:
+If the dependency fails:
 
 `activate(B2) = BLOCKED`
 
 But:
 
-`resolve(B2)` remains unchanged
+`resolve(B2)` may remain unchanged
 
 Thus:
 
 `dependency failure != truth failure`
+
+Dependencies govern activation.
+
+They do not rewrite the resolved structural state.
 
 ---
 
@@ -256,36 +327,40 @@ Thus:
 
 Release is modeled explicitly:
 
-`release_mode = auto | manual`  
+`release_mode = auto | manual`
+
 `release_if = dependency set`
 
-Activation states:
+Activation states include:
 
-- `READY` → eligible  
-- `RELEASED` → operationally applied  
+- `READY -> structurally eligible`
+- `RELEASED -> operationally applied in the model`
+- `BLOCKED -> prevented by dependency, conflict, or unresolved condition`
+- `FROZEN -> intentionally withheld`
 
 Thus:
 
 `READY != RELEASED`
 
-Operational release is **decoupled** from structural correctness.
+Operational release is decoupled from structural resolution.
 
 ---
 
 ## **10. Frozen State Preservation**
 
-A structurally valid batch may be withheld:
+A structurally valid and dependency-satisfied batch may still be intentionally withheld:
 
 `activation_state = FROZEN`
 
 This ensures:
 
-- truth is preserved  
-- activation is intentionally withheld  
+- resolved structure is preserved
+- operational release is prevented
+- supervisory control remains visible
 
 Thus:
 
-**correctness survives without immediate execution**
+`truth can be preserved while activation is withheld`
 
 ---
 
@@ -293,75 +368,104 @@ Thus:
 
 If structure is incomplete:
 
-`resolve(S) → ABSTAIN`
+`resolve(S) -> ABSTAIN`
 
 If structure is inconsistent:
 
-`resolve(S) → CONFLICT`
+`resolve(S) -> CONFLICT`
 
-Thus:
+Therefore, the model does not force an admitted resolved state under:
 
-no incorrect state is produced under:
+- missing data
+- conflicting data
+- unresolved dependencies
+- supervisory withholding
 
-- missing data  
-- conflicting data  
+Safety is enforced conservatively.
 
-Safety is enforced **conservatively**.
+The model preserves incompleteness and conflict instead of hiding them.
 
 ---
 
 ## **12. Idempotence and Stability**
 
-Repeated evaluation does not change outcome:
+Repeated evaluation of the same declared structure is stable:
 
 `resolve(S) = resolve(S)`
 
-Duplicate structure does not alter result:
+Duplicate compatible structure does not change the resolved result:
 
-`resolve(S ∪ S) = resolve(S)`
+`resolve(S union S) = resolve(S)`
 
 Thus:
 
-resolution is **stable under repetition**.
+`repeated evaluation -> same resolved state`
+
+within the same rules and implementation version.
 
 ---
 
-## **13. Monotonic Structural Safety**
+## **13. Conservative Structural Safety**
 
-Structure evolves toward validity.
+STINT-Money does not assume that partial structure is true enough.
 
 Before maturity:
 
-- `ABSTAIN` → insufficient structure  
-- `CONFLICT` → inconsistent structure  
+`ABSTAIN -> insufficient structure`
+
+If inconsistency appears:
+
+`CONFLICT -> inconsistent structure`
 
 After maturity:
 
-- `RESOLVED` → deterministic state  
+`RESOLVED -> admitted deterministic state`
 
 Thus:
 
-invalid or partial structure **cannot produce false outcomes**.
+`partial structure cannot force RESOLVED`
+
+and:
+
+`conflicting structure cannot force RESOLVED`
+
+This is conservative structural safety.
 
 ---
 
-## **14. Conservative Correctness**
+## **14. Conservative Financial Result Preservation**
 
-STINT-Money does not redefine financial correctness.
+STINT-Money does not redefine financial arithmetic.
 
-For valid structure:
+For valid declared structure inside the reference model:
 
 `classical_result(S) = STINT_result(S)`
 
-Its innovation is:
+The structural layer does not change the represented financial result.
 
-- removing continuous connectivity as a requirement for achieving that result  
+It determines whether that result is:
+
+- admitted
+- incomplete
+- conflicting
+- blocked
+- ready
+- released
+- frozen
+
+Thus:
+
+`structure preserves the represented result`
+
+and:
+
+`activation controls operational release`
 
 ---
 
-## **15. Convergence Without Continuous Connectivity**
+## **15. Convergence Without Continuous Connectivity as Governing Authority**
 
-If independent systems eventually obtain the same structure:
+If independent systems eventually obtain the same complete canonical structure under the same rules and implementation version:
 
 `S_A = S_B`
 
@@ -369,60 +473,70 @@ Then:
 
 `resolve(S_A) = resolve(S_B)`
 
-Thus:
+Thus, convergence of the resolved state does not require continuous connectivity as the governing authority.
 
-convergence does not require:
+It requires:
 
-- continuous connectivity  
-- real-time synchronization  
-- ordered communication  
+- sufficient structure
+- compatibility
+- fixed rules
+- deterministic implementation behavior
 
-Only **structural equivalence** is required.
+Communication may still be required to make structure available.
+
+But communication does not create the structural admissibility decision.
 
 ---
 
 ## **16. Supervisory Composition**
 
-Multiple batches may be combined:
+Multiple batch capsules may be combined into a supervisory view:
 
 `S_super = {B1, B2, B3, ...}`
 
-Supervisory state reflects **worst-case structural condition**.
+The supervisory capsule reflects worst-case structural and activation conditions.
 
-If any batch is:
+For example:
 
-- `CONFLICT` → supervisory state becomes `CONFLICT`  
-- `BLOCKED` → supervisory activation reflects blockage  
+`any batch CONFLICT -> supervisory resolution reflects CONFLICT`
+
+`any batch BLOCKED -> supervisory activation reflects BLOCKED`
+
+`any batch FROZEN -> supervisory activation reflects FROZEN`
 
 Thus:
 
-system-level correctness and risk visibility emerge **structurally across batches**.
+- resolved batches remain visible
+- conflicting batches escalate
+- blocked activation remains visible
+- frozen truth remains preserved
+- supervisory state becomes structurally inspectable
 
 ---
 
 ## **17. Summary**
 
-This proof sketch establishes the following core properties:
+This proof sketch establishes the following bounded properties inside the STINT-Money reference model:
 
-- deterministic structural resolution  
-- order-independent merge  
-- tetherless convergence  
-- canonical structural identity  
-- self-validating structural capsules  
-- separation of truth and activation  
-- dependency-aware activation control  
-- explicit release modeling  
-- frozen-state preservation  
-- conflict and insufficiency safety  
-- idempotent evaluation  
-- monotonic structural safety  
-- conservative correctness  
-- convergence without continuous connectivity  
-- supervisory structural composition  
+- deterministic structural resolution
+- supported order-independent merge
+- tetherless structural resolution
+- canonical structural identity
+- structural capsule validation
+- separation of resolution and activation
+- dependency-aware activation control
+- explicit release modeling
+- frozen-state preservation
+- conflict and insufficiency safety
+- idempotent evaluation
+- conservative structural safety
+- classical result preservation for valid declared structure
+- convergence without continuous connectivity as governing authority
+- supervisory structural composition
 
 Therefore:
 
-**STINT-Money deterministically preserves and reconstructs financial correctness from structure—even under disconnection, delay, unordered availability, and dependency constraints—without requiring continuous network connectivity.**
+**STINT-Money demonstrates that bounded financial-state admissibility can be resolved from complete and consistent declared structure, even under disconnection, delay, unordered availability, and dependency constraints, without continuous network connectivity acting as the governing authority over the structural resolution decision.**
 
 ---
 
@@ -432,7 +546,24 @@ This proof sketch applies to the **STINT-Money reference model** as defined in t
 
 It does not replace:
 
-- formal verification  
-- financial regulation compliance  
-- cryptographic security guarantees  
-- production system validation  
+- formal verification
+- independent implementation review
+- cryptographic security guarantees
+- production system validation
+- financial regulation compliance
+- legal settlement analysis
+- fraud-control design
+- identity and authorization systems
+- downstream settlement infrastructure
+
+The correct interpretation is:
+
+`structure -> admissibility`
+
+`transport -> availability`
+
+`activation -> operational release`
+
+Within the declared model:
+
+**Structure governs admissibility. Operations may remain.**
