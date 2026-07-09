@@ -4,44 +4,70 @@ Run reference demonstration:
 
 python demo/stint_money_demo_v1.0.py
 
+Run again:
+
+python demo/stint_money_demo_v1.0.py
+
 Observe:
 
-deterministic structural settlement
-no dependence on continuous connectivity
-no dependence on synchronization or message ordering
-structure is evaluated independently of network conditions
-resolution is derived purely from structural completeness and consistency
-activation is controlled separately from correctness
+deterministic structural resolution
+independent batch reconstruction
+dependency-aware activation
+separation of structural truth and operational activation
+tamper detection
+supervisory rollup under worst-case structural state
+
+Reference scope:
+
+This verification confirms deterministic behavior inside the STINT-Money reference model.
+
+Structural correctness means:
+
+the resolved state admitted by declared inputs, structural rules, initial conditions, consistency checks, canonicalization, and deterministic implementation behavior
+
+It does not by itself mean legal settlement, transfer of funds, regulatory approval, cryptographic authorization, fraud control, or production payment finality.
 
 Expected structural outcomes:
 
-BATCH-1 → RESOLVED + RELEASED
-BATCH-2 → RESOLVED + READY (or RELEASED when explicitly permitted)
-BATCH-3 → RESOLVED + BLOCKED
-BATCH-4 → CONFLICT + BLOCKED
-Supervisory state reflects worst-case structural condition
+BATCH-1 -> RESOLVED + RELEASED
+BATCH-2 -> RESOLVED + READY
+BATCH-2 -> RESOLVED + RELEASED when explicitly permitted
+BATCH-3 -> RESOLVED + BLOCKED
+BATCH-4 -> CONFLICT + BLOCKED
+Supervisory state -> worst-case structural condition
 
 Expected structural maturity:
 
-complete and consistent structure → RESOLVED
-incomplete structure → ABSTAIN
-inconsistent structure → CONFLICT
+complete and consistent structure -> RESOLVED
+incomplete structure -> ABSTAIN
+inconsistent structure -> CONFLICT
 
 Expected behavior:
 
-complete structure → visible and stable state
-incomplete structure → no forced resolution (ABSTAIN)
-inconsistent structure → safe rejection (CONFLICT)
-dependency failure → activation blocked, correctness preserved
-identical structure → identical outcome and canonical representation
+complete and consistent structure -> admitted resolved state
+incomplete structure -> no forced resolution
+inconsistent structure -> conflict remains visible
+dependency failure -> activation blocked while structural truth is preserved
+explicit release -> READY may become RELEASED
+supervisory withholding -> FROZEN
+tampered capsule -> validation failure
+
+Core verification principle:
+
+same complete canonical structure + same rules + same implementation version -> same resolved state
 
 Verify determinism:
 
 run the script multiple times
-confirm identical:
+
+Confirm identical:
+
 visible state
 structural_time
 certificates
+activation states
+supervisory state
+final output behavior
 
 Verify file identity:
 
@@ -54,18 +80,44 @@ the structural certificate represents resolved structure
 these are not required to be equal
 
 The structural certificate is derived from resolved structure, not from the file itself.
-Identical structure produces identical certificates, independent of execution, ordering, or network conditions.
+
+Identical resolved structure produces identical certificates inside the reference model.
+
+Certificate boundary:
+
+the structural certificate is reproducible
+the structural certificate is replayable
+the structural certificate is not a legal signature
+the structural certificate is not regulatory approval
+the structural certificate is not identity proof
+the structural certificate is not cryptographic authorization by itself
 
 Confirm:
 
-output is identical across runs
-certificates remain consistent for identical structure
-modified structure produces a different certificate
-merge order or timing does not affect final outcome
+output is identical across repeated runs
+certificates remain consistent for identical resolved structure
+tampered structure is detected and rejected
+dependency failure blocks activation without erasing structural truth
+READY and RELEASED remain separate states
+RESOLVED and BLOCKED can coexist
+supervisory rollup reflects worst-case structural condition
+
+Important boundary:
+
+The v1.0 demonstration verifies deterministic reference output and capsule validation.
+
+The reference model is designed so that supported structural merge order does not govern the resolved result.
+
+Dedicated shuffled merge-order test cases may be added in later versions.
 
 Result:
 
-Deterministic structural settlement confirmed for STINT-Money.
+Deterministic structural settlement behavior is confirmed for the STINT-Money reference model.
 
-Financial correctness is preserved and reconstructed from structure, independent of continuous network connectivity, synchronization, or ordered communication.
+Within the declared model:
 
+structure governs admissibility
+transport governs availability
+activation governs operational release
+
+Operations may remain.
