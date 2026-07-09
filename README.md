@@ -180,6 +180,7 @@ Related structural references include SLANG-Money, ORL, ORL-Money, STOCRS, STIME
 ### ⚙️ **Framework**
 
 [Dependency Elimination Framework](docs/Dependency-Elimination-Framework.png)
+[Shunyaya Structural Stack](docs/Shunyaya-Structural-Stack.png)
 
 ### ⚡ **Demo**
 
