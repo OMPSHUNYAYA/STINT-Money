@@ -17,19 +17,23 @@
 ![Insufficient-Safe](https://img.shields.io/badge/Insufficient-ABSTAIN-yellow)
 ![Supervisory](https://img.shields.io/badge/Supervisory-Worst--Case%20Aware-grey)
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
-![Open-Standard](https://img.shields.io/badge/Reference-Open%20Standard-blue)
+![Open-Use](https://img.shields.io/badge/Reference-Open%20Use-blue)
 
 [![Verify](https://github.com/OMPSHUNYAYA/STINT-Money/actions/workflows/stint-money-verify.yml/badge.svg)](https://github.com/OMPSHUNYAYA/STINT-Money/actions/workflows/stint-money-verify.yml)
 
-**A deterministic proof that financial correctness does not require continuous connectivity.**
+**A deterministic reference demonstration of structural financial-state resolution without continuous connectivity as the governing authority.**
 
-A minimal deterministic reference implementation where financial correctness is preserved and reconstructed directly from structure — not from continuous connectivity, synchronization, or ordered communication.
+STINT-Money is a minimal deterministic reference implementation where a bounded financial state is resolved from declared structure, rather than governed by continuous connectivity, synchronization, or ordered communication.
 
 ---
 
-**Structure-Based Settlement • No Continuous Connectivity • No Synchronization • No Ordered Communication • Dependency-Aware Activation**
+**Structure-Based Settlement • Continuous Connectivity Not the Governing Authority • Synchronization Not the Governing Authority • Ordered Communication Not the Governing Authority • Dependency-Aware Activation**
 
-Financial correctness derived from structure — not from network continuity, message order, or synchronized exchange.
+Within this reference model, structural correctness means:
+
+`the resolved state admitted by declared inputs, structural rules, initial conditions, consistency checks, canonicalization, and deterministic implementation behavior`
+
+It does not by itself mean legal settlement, transfer of funds, regulatory approval, cryptographic authorization, fraud control, or production payment finality.
 
 Built on **structure-first principles** from the Shunyaya framework.
 
@@ -39,22 +43,23 @@ Built on **structure-first principles** from the Shunyaya framework.
 
 Run the reference demonstration:
 
-```
+```bash
 python demo/stint_money_demo_v1.0.py
 ```
 
 Run again:
 
-```
+```bash
 python demo/stint_money_demo_v1.0.py
 ```
 
+
 In under a minute, observe:
 
-- deterministic structural settlement under delayed and unordered availability
+- deterministic structural resolution under delayed and unordered availability
 - independent batch reconstruction
 - dependency-aware activation
-- separation of truth and activation
+- separation of structural truth and operational activation
 - tamper detection
 - supervisory rollup under worst-case structural state
 
@@ -70,49 +75,57 @@ In under a minute, observe:
 
 ## **STINT Theorem (Reference Claim)**
 
-Given complete and consistent financial structure:
+Given complete and consistent declared financial structure `S` within this reference model:
 
-financial correctness is determined solely by structure, independent of continuous connectivity, synchronization, and ordered communication.
+`admissible_state = resolve(S)`
 
-These affect only:
+The structural correctness decision is determined by the declared structure and rules, not by continuous connectivity, synchronized exchange, or message arrival order.
+
+Connectivity, synchronization, and message ordering may still affect:
 
 - when structure becomes available
+- when reconciliation can occur
 - when activation is permitted
+- when external systems can be notified or updated
 
-They do not determine financial truth.
+They do not act as the sole governing authority over the bounded structural resolution decision.
 
 ---
 
 ## ⚡ **The One-Line Breakthrough**
 
-A financial system can preserve correctness without continuous network connectivity.
+A bounded financial state can be resolved from complete and consistent structure without continuous network connectivity serving as the governing authority.
 
-No synchronized exchange. No ordered communication. No dependence on always-on transport.
+No always-on transport is required for the structural correctness decision once sufficient structure is available.
 
-Yet correctness holds — when structure is complete and consistent.
+Yet the result remains deterministic:
+
+`same complete canonical structure + same rules + same implementation version -> same resolved state`
 
 ---
 
 ## 🔒 **Structural Guarantee**
 
-STINT-Money preserves classical financial correctness.
+STINT-Money preserves the classical financial result represented by the valid declared structure.
 
-For any valid structure `S`:
+For any valid structure `S` inside the reference model:
 
 `classical_result(S) = STINT_result(S)`
 
-The system does not change financial outcomes.
+The system does not redefine financial arithmetic.
 
-It enforces a stricter rule:
+It enforces a stricter visibility rule:
 
-`invalid or incomplete structure -> no outcome`
+`invalid or incomplete structure -> no admitted financial outcome`
 
 This ensures:
 
 - no forced correctness
 - no approximation
 - no hidden correction
-- only structurally valid truth becomes visible
+- no unsafe activation from incomplete or conflicting structure
+- only structurally valid financial states become `RESOLVED`
+- incomplete and conflicting states remain explicitly visible as `ABSTAIN` or `CONFLICT`
 
 ---
 
@@ -120,27 +133,27 @@ This ensures:
 
 STINT-Money represents the next layer in structural financial correctness:
 
-- `SLANG-Money -> removes execution dependency`
-- `ORL-Money -> removes ordering dependency`
-- `STINT-Money -> removes continuous network dependency`
+- `SLANG-Money -> reduces execution dependency as the sole resolution authority`
+- `ORL-Money -> reduces ordering dependency as the sole resolution authority`
+- `STINT-Money -> reduces continuous connectivity dependency as the sole resolution authority`
 
-It shows that:
+It shows that, within the declared reference model:
 
-money correctness does not require continuous connectivity.
+`financial-state admissibility can be governed by structure`
 
 ### **Relation to Prior Work**
 
 STINT-Money belongs to a broader structure-first financial lineage within the Shunyaya ecosystem.
 
-- SLANG-Money demonstrates financial correctness without execution.
-- ORL-Money demonstrates financial correctness without ordering.
-- STINT-Money demonstrates financial correctness without continuous connectivity.
+- SLANG-Money demonstrates bounded financial-state resolution without execution workflow as the sole authority.
+- ORL-Money demonstrates bounded financial-state reconciliation without arrival order as the sole authority.
+- STINT-Money demonstrates bounded financial-state resolution without continuous connectivity as the sole authority.
 
 Together, they show a layered structural progression:
 
 `execution -> ordering -> connectivity`
 
-Each dependency is removed independently, while correctness remains preserved by structure.
+Each dependency is reduced at the level of governing admissible resolution, while operational mechanisms may still remain necessary.
 
 Related structural references include SLANG-Money, ORL, ORL-Money, STOCRS, STIME, SSUM-Time, and the Shunyaya master documentation.
 
@@ -189,11 +202,11 @@ Related structural references include SLANG-Money, ORL, ORL-Money, STOCRS, STIME
 
 ## 💡 **What This Reference Implementation Demonstrates**
 
-This system proves one core claim:
+This system demonstrates one bounded claim:
 
-financial correctness does not require continuous connectivity.
+`within the declared model, financial-state admissibility is resolved from structure rather than continuous connectivity`
 
-More broadly, it shows that correctness does not depend on:
+More broadly, it shows that a bounded structural correctness decision need not be governed by:
 
 - continuous connectivity
 - synchronized communication
@@ -202,7 +215,7 @@ More broadly, it shows that correctness does not depend on:
 
 Instead:
 
-`correctness = structure`
+`admissible outcome = resolve(declared structure)`
 
 ---
 
@@ -212,8 +225,9 @@ Instead:
 
 - a structural settlement reference implementation
 - a deterministic tetherless settlement demonstration
-- a proof that continuous connectivity is not fundamental to correctness
-- a structure-first financial correctness model
+- a bounded proof-of-principle for structural financial-state resolution
+- a dependency-aware activation model
+- a structure-first correctness model within declared rules
 
 ### **STINT-Money IS NOT:**
 
@@ -221,8 +235,12 @@ Instead:
 - a payment engine
 - a production settlement network
 - a regulatory or compliance framework
+- a legal settlement mechanism
+- a fund-transfer system
+- a cryptographic authorization layer
+- a fraud-control system
 
-It is the smallest visible proof of tetherless structural settlement.
+It is a minimal visible reference model for tetherless structural settlement.
 
 ---
 
@@ -230,7 +248,9 @@ It is the smallest visible proof of tetherless structural settlement.
 
 STINT-Money can be introduced as a **pre-settlement structural correctness layer**.
 
-It determines financial correctness before banking or network-dependent systems are involved.
+It can determine whether a declared financial state is structurally complete, consistent, and admissible before downstream banking or network-dependent systems are involved.
+
+It does not replace external settlement, authorization, compliance, identity verification, liquidity checks, fraud control, or legal finality.
 
 → [Read more: Pre-Settlement Structural Layer](docs/Pre-settlement-Structural-Layer-Note.md)
 
@@ -238,25 +258,31 @@ It determines financial correctness before banking or network-dependent systems 
 
 ## 🔥 **The Core Structural Laws**
 
-`state_visible iff structure_mature`
+`resolved_state_visible iff structure_mature`
+
+`structure_mature = structure_complete AND structure_consistent`
 
 `dependency failure != truth failure`
 
 `resolution_state != activation_state`
 
-`same structural truth -> same canonical merged capsule`
+`same complete canonical structure -> same canonical merged capsule`
 
 ---
 
 ## 🕳 **Absence Principle**
 
-If structure is not complete, outcome does not exist.
+If structure is not complete, the model does not force an outcome.
 
-`incomplete structure -> no outcome`  
-`conflicting structure -> no valid outcome`
+`incomplete structure -> ABSTAIN`
 
-Outcome is not delayed.  
-Outcome is absent until structure is sufficient.
+If structure is conflicting, the model does not admit a valid outcome.
+
+`conflicting structure -> CONFLICT`
+
+The outcome is not merely delayed.
+
+Under the declared rules, the outcome is absent until structure is sufficient.
 
 ---
 
@@ -272,50 +298,54 @@ No guessing. No forcing. No unsafe activation.
 
 ### **No Forced Correctness Guarantee**
 
-The system does not produce incorrect outcomes under missing, conflicting, or dependency-blocked conditions.
+The system does not produce admitted outcomes under missing, conflicting, or dependency-blocked conditions.
 
 If structure is incomplete or inconsistent:
 
-- no incorrect state is produced
+- no resolved state is forced
 - no unsafe activation is permitted
+- the unresolved or conflicting state remains visible
 
-Only structurally valid states become visible.
+Only structurally valid financial states become `RESOLVED`.
 
-Only dependency-satisfied states become activatable.
+Only dependency-satisfied resolved states become activatable.
 
 ---
 
 ## 🧮 **Deterministic Guarantees**
 
 **Determinism:**  
-Same structure → same outcome
+Same complete canonical structure under the same rules and implementation version produces the same outcome.
 
 **Order Independence:**  
-Merge order does not affect final truth
+Supported merge order does not affect final structural truth.
 
 **Path Independence:**  
-Merge path does not affect canonical outcome
+Supported merge path does not affect canonical outcome.
 
 **Truth / Activation Separation:**  
-A batch may be RESOLVED but still BLOCKED
+A batch may be `RESOLVED` but still `BLOCKED`.
 
 **Certificate Stability:**  
-Equivalent structure produces reproducible certificate
+Equivalent resolved structure produces a reproducible structural certificate.
 
 ---
 
 ## 🧬 **Collapse Guarantee**
 
-All structural evaluation collapses to classical financial truth:
+Structural evaluation preserves the classical financial result represented by the declared valid structure.
+
+For the reference model:
 
 `phi((structure, activation, supervision)) = classical_result`
 
-No matter how structure is merged, delayed, or reconstructed:
+This means:
 
-final observable outcome remains identical to classical correctness.
+- structure does not change the represented financial result
+- activation does not redefine the financial result
+- supervision does not rewrite the financial result
 
-Structure does not change truth.  
-It reveals it deterministically.
+The structural layer reveals whether the result is admissible, blocked, frozen, or conflicting under the declared rules.
 
 ---
 
@@ -323,20 +353,23 @@ It reveals it deterministically.
 
 Each resolved structure produces a deterministic structural certificate:
 
-`same structure -> same certificate`
+`same resolved visible structure -> same certificate`
 
 The certificate is:
 
 - reproducible
-- verifiable
+- replayable
 - independent of network continuity
-- independent of merge order
+- independent of supported merge order
+- derived from resolved structure
 
-This makes the final structure itself a form of proof.
+This makes the resolved structure itself auditable inside the reference model.
 
 **Note:**  
 The structural certificate is derived from resolved structure, not from the file itself.  
-Identical structure produces identical certificates, independent of representation.
+Identical resolved structure produces identical certificates, independent of representation details handled by the canonicalization rules.
+
+The certificate is not a legal signature, regulatory approval, identity guarantee, or cryptographic authorization by itself.
 
 ---
 
@@ -346,6 +379,10 @@ Deterministic outputs and reproducibility can be verified using:
 
 `VERIFY/FREEZE_DEMO_SHA256.txt`  
 `VERIFY/VERIFY.txt`
+
+The verification layer checks reference reproducibility.
+
+It does not certify production readiness, legal settlement, security completeness, or regulatory compliance.
 
 ---
 
@@ -358,10 +395,11 @@ The demonstration includes multiple batches with different structural conditions
 - a batch that remains RESOLVED but BLOCKED
 - a conflicting batch that escalates supervisory state
 - a frozen batch whose truth is preserved while activation is withheld
+- a tampered capsule that is rejected by validation
 
 **Important:**  
 The demo is not modeling transaction execution.  
-It is modeling structural financial correctness under tetherless conditions.
+It is modeling bounded structural financial-state resolution under tetherless conditions.
 
 ---
 
@@ -377,30 +415,31 @@ Operational release is modeled separately:
 
 This means:
 
-- truth is structural
-- activation is controlled
+- truth is structural inside the declared model
+- activation is controlled separately
+- transport carries structure but does not govern the correctness decision
 
 ### **Three-Layer Structural Flow**
 
 STINT-Money separates three roles that are often treated as one:
 
 **Structural Truth**  
-Financial correctness is determined only from complete and consistent structure.
+The admissible bounded financial state is determined from complete and consistent declared structure.
 
 **Dependency and Activation**  
 Operational readiness depends on dependency satisfaction, release conditions, and supervisory policy.
 
 **Optional Transport**  
-Networks may carry, delay, replay, or deliver structure — but they do not create correctness.
+Networks may carry, delay, replay, or deliver structure. They do not create the structural correctness decision.
 
 This separation is the key architectural move in STINT-Money:
 
-`structure -> truth`  
+`structure -> admissible truth`  
 `dependencies -> activation`  
-`transport -> optional carrier`
+`transport -> availability`
 
 Transport affects availability.  
-It does not create financial truth.
+It does not govern structural admissibility.
 
 ---
 
@@ -422,31 +461,37 @@ If dependencies fail:
 
 ## 🧠 **Critical Insight**
 
-The system does not produce failure by default.  
 The system does not guess.  
-The system does not approximate.
+The system does not approximate.  
+The system does not hide unresolved structure.
 
 Instead:
 
 - structure is evaluated conservatively
 - truth is preserved structurally
+- conflict remains visible
+- incompleteness remains visible
 - activation is withheld when unsafe
 
 ---
 
-## 🔁 **Deterministic Convergence Proof**
+## 🔁 **Deterministic Convergence Check**
 
 Re-run the demo:
 
-```
+```bash
 python demo/stint_money_demo_v1.0.py
 ```
 
-Result:
 
-- identical outputs
+Expected result:
+
+- identical visible states
+- identical structural_time values
 - identical certificates
 - identical structural behavior
+
+This confirms deterministic reproducibility for the reference implementation.
 
 ---
 
@@ -457,7 +502,7 @@ The model explicitly distinguishes:
 `READY -> structurally eligible`  
 `RELEASED -> operationally applied`
 
-This means a batch can be correct without being released.
+This means a batch can be structurally `RESOLVED` without being `RELEASED`.
 
 ---
 
@@ -476,16 +521,15 @@ Result:
 
 ## 🧠 **What This Means**
 
-Financial correctness was preserved without:
+Within this reference model, the resolved financial state is preserved without continuous connectivity acting as the governing authority.
 
-- continuous connectivity
-- synchronization
-- ordered communication
+This demonstrates a deeper structural principle:
 
-This demonstrates a deeper principle:
+`structure governs admissibility`
 
-structure determines truth  
-transport only determines availability
+`transport governs availability`
+
+`activation governs operational release`
 
 ---
 
@@ -495,9 +539,13 @@ Traditional assumption:
 
 `money correctness = connectivity + synchronization + order`
 
-STINT-Money shows:
+STINT-Money examines a bounded alternative:
 
-`money correctness = structure`
+`admissible financial state = resolve(declared structure)`
+
+Connectivity, synchronization, and ordering may remain operationally useful.
+
+They are not treated as the sole source of structural correctness inside this model.
 
 ---
 
@@ -511,7 +559,9 @@ This can be positioned as a pre-settlement structural layer:
 
 `financial fragments -> structural resolution -> dependency-aware activation -> optional downstream settlement`
 
-Only the structurally necessary outcome needs to cross the network boundary.
+Only structurally necessary outcomes may need to cross the network boundary after local structural resolution.
+
+External settlement, communication, authentication, authorization, compliance, and reconciliation may still remain necessary.
 
 ---
 
@@ -523,6 +573,8 @@ Core mechanism:
 - structural resolution
 - canonical convergence
 - dependency-aware activation
+- explicit release
+- frozen-state preservation
 - supervisory rollup
 - tamper validation
 
@@ -532,24 +584,27 @@ Core mechanism:
 
 ## 📊 **Comparison**
 
-| Model        | Continuous Connectivity Required | Ordered Communication Required | Truth / Activation Separated | Canonical Structural Outcome | Deterministic |
-|--------------|----------------------------------|--------------------------------|------------------------------|------------------------------|--------------|
-| Traditional  | Yes                              | Yes                            | No                           | No                           | Conditional  |
-| Eventual     | Yes                              | Often                          | Limited                      | Limited                      | Conditional  |
-| Ledger-Based | Yes                              | Yes                            | Limited                      | Limited                      | Conditional  |
-| STINT-Money  | No                               | No                             | Yes                          | Yes                          | Yes          |
+| Model        | Continuous Connectivity as Governing Authority | Ordered Communication as Governing Authority | Truth / Activation Separated | Canonical Structural Outcome | Deterministic Within Declared Rules |
+|--------------|-----------------------------------------------|----------------------------------------------|------------------------------|------------------------------|--------------------------------------|
+| Traditional  | Often                                         | Often                                        | Usually limited              | Usually limited              | Conditional                          |
+| Eventual     | Often                                         | Sometimes                                    | Limited                      | Limited                      | Conditional                          |
+| Ledger-Based | Often                                         | Often                                        | Limited                      | Limited                      | Conditional                          |
+| STINT-Money  | No                                            | No                                           | Yes                          | Yes                          | Yes                                  |
 
 ---
 
 ## 🌍 **Implications**
 
-If this scales:
+If this model scales under broader validation:
 
-- network becomes optional for correctness
-- synchronization becomes non-fundamental
-- settlement becomes structurally verifiable
-- audit becomes capsule-based
-- system recovery becomes deterministic
+- continuous connectivity may become less fundamental for bounded correctness decisions
+- synchronization may become less central to structural admissibility
+- settlement validation may become more structurally verifiable
+- audit may become more capsule-based
+- recovery after partition may become more deterministic
+- unresolved and conflicting states may become more explicitly visible
+
+These are research implications, not production guarantees.
 
 ---
 
@@ -557,45 +612,47 @@ If this scales:
 
 **SLANG-Money:**  
 single-node structural resolution  
-correctness without execution
+reduces execution workflow as the sole authority
 
 **ORL-Money:**  
 multi-node structural reconciliation  
-correctness without ordering
+reduces arrival order as the sole authority
 
 **STINT-Money:**  
 tetherless structural settlement  
-correctness without continuous connectivity
+reduces continuous connectivity as the sole authority
 
 Together:
 
-structure-first financial correctness across execution, ordering, and connectivity layers
+structure-first financial-state admissibility across execution, ordering, and connectivity layers
 
 ---
 
 ## 🧱 **Dependency Elimination Framework**
 
-| Domain | Removed Dependency | What Preserves Correctness |
+| Domain | Dependency Not Treated as Sole Authority | What Governs Admissibility |
 |---|---|---|
 | Time | clocks | structure |
 | Decision | order | structure |
 | Meaning | sequence | structure |
 | Money | continuous connectivity | structure |
 | Truth | agreement | structure |
-| Computation | execution | structure |
-| AI | inference | structure |
+| Computation | execution workflow | structure |
+| AI | inference path in bounded models | structure |
 | Cybersecurity | process / pipelines | structure |
-| Identity | authority / registry | structure |
-| Consensus | voting / quorum | structure |
-| Network | connectivity | structure |
+| Identity | authority / registry alone | structure |
+| Consensus | voting / quorum alone | structure |
+| Network | continuous connectivity | structure |
 | Cloud | cloud infrastructure | structure |
-| Audit | verification | structure |
+| Audit | manual verification alone | structure |
 
-Each row removes a dependency — yet correctness remains intact.
+Each row should be read as bounded dependency reduction.
 
-Nothing is replaced.  
-Nothing is approximated.  
-Only the dependency is eliminated.
+It does not say operational mechanisms disappear.
+
+It says the listed mechanism is not treated as the sole governing authority over admissible resolution within the declared model.
+
+**Structure governs admissibility. Operations may remain.**
 
 ---
 
@@ -604,16 +661,19 @@ Only the dependency is eliminated.
 See: [LICENSE](LICENSE)
 
 **Reference Implementation:**  
-Open Standard — free to use, study, implement, extend, and deploy
+Released under an **Open Use License** for use, study, execution, verification, reproduction, and distribution.
 
 **Architecture and Documentation:**  
-CC BY-NC 4.0
+Licensed under `CC BY-NC 4.0`.
+
+Attribution is required for architecture and documentation.  
+Commercial use of architecture and documentation requires separate written permission.
 
 ---
 
 ## 🔭 **Roadmap (Exploratory)**
 
-This release focuses on minimal structural proof.
+This release focuses on minimal structural proof-of-principle.
 
 Planned explorations include:
 
@@ -623,29 +683,33 @@ Planned explorations include:
 - cryptographic envelope and attestation layers
 - partition recovery and replay models
 - larger-scale tetherless settlement scenarios
+- explicit incomplete-batch ABSTAIN demonstrations
+- shuffled merge-order reproducibility tests
 
 These are extensions of the same principle:
 
-`correctness = structure`
+`admissible outcome = resolve(declared structure)`
 
-This release proves the principle in tetherless settlement. Extensions are exploratory.
+This release demonstrates the principle in a bounded tetherless settlement reference model. Extensions remain exploratory.
 
 ---
 
 ## 🔗 **Related Structural References**
 
-- [ORL](https://github.com/OMPSHUNYAYA/Orderless-Ledger) — ledger correctness from structure without ordering  
-- [STOCRS](https://github.com/OMPSHUNYAYA/STOCRS) — computation from structure without execution  
+- [ORL](https://github.com/OMPSHUNYAYA/Orderless-Ledger) — ledger correctness from structure without ordering as sole authority  
+- [STOCRS](https://github.com/OMPSHUNYAYA/STOCRS) — computation from structure without execution workflow as sole authority  
 - [STIME](https://github.com/OMPSHUNYAYA/Structural-Time) — time from valid structural transitions  
 - [SSUM-Time](https://github.com/OMPSHUNYAYA/SSUM-Time) — structural clock for time reconstruction and recovery  
-- [SLANG-Money](https://github.com/OMPSHUNYAYA/SLANG-Money) — financial state from structure without transactions  
+- [SLANG-Money](https://github.com/OMPSHUNYAYA/SLANG-Money) — financial state from structure without transaction execution as sole authority  
 
 ---
 
 ## 🧭 **Final Statement**
 
-Connectivity did not create correctness.  
-Synchronization did not create correctness.  
-Order did not create correctness.
+Connectivity did not create the structural correctness decision.  
+Synchronization did not create the structural correctness decision.  
+Order did not create the structural correctness decision.
 
-**Correctness emerged from structure.**
+Within the declared model:
+
+**Structure governs admissibility. Operations may remain.**
